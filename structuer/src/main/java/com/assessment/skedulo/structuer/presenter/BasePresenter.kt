@@ -10,7 +10,7 @@ import kotlin.coroutines.CoroutineContext
  */
 abstract class BasePresenter<V> : Presenter<V>, CoroutineScope {
 
-    protected val job = Job()
+    private val job = Job()
     override val coroutineContext: CoroutineContext = job + Dispatchers.IO
 
     protected var view: V? = null
