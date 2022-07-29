@@ -1,6 +1,7 @@
 package com.assessment.skedulo.di.component
 
 import com.assessment.skedulo.AssessmentApplication
+import com.assessment.skedulo.data.di.module.DataModule
 import com.assessment.skedulo.di.module.ActivityBindingModule
 import com.assessment.skedulo.di.module.ApplicationModule
 import dagger.BindsInstance
@@ -15,7 +16,8 @@ import javax.inject.Singleton
     modules = [
         (ApplicationModule::class),
         (AndroidInjectionModule::class),
-        (ActivityBindingModule::class)
+        (ActivityBindingModule::class),
+        (DataModule::class)
     ]
 )
 interface ApplicationComponent : AndroidInjector<AssessmentApplication> {

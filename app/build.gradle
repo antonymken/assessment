@@ -45,6 +45,8 @@ dependencies {
     implementation project(path: ':structuer')
     implementation project(path: ':structuer-android')
     implementation project(path: ':ui')
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$androidx_appcompat"
