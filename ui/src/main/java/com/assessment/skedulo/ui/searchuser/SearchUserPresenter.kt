@@ -7,16 +7,18 @@ import com.assessment.skedulo.structuer.domain.Success
 import com.assessment.skedulo.structuer.presenter.BasePresenter
 import kotlinx.coroutines.*
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 class SearchUserPresenter @Inject constructor(
-    private val getGithubUserListUseCase: GetGithubUserListUseCase
-) : BasePresenter<SearchUserView>() {
+    private val getGithubUserListUseCase: GetGithubUserListUseCase,
+    coroutineContext: CoroutineContext
+) : BasePresenter<SearchUserView>(coroutineContext) {
 
     private var searchJob: Job? = null
 
     suspend fun query(query: String) {
         searchJob?.cancel()
-        searchJob = this.launch {
+        searchJob = launch(coroutineContext) {
             delay(1000)
             searchUser(query)
         }

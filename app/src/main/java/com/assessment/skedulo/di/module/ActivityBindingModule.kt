@@ -17,7 +17,7 @@ abstract class ActivityBindingModule {
     @ContributesAndroidInjector(
         modules = [(MainActivityModule::class), (SearchUserFragmentModule::class)]
     )
-    internal abstract fun provideAstronautListFragment(): SearchUserFragment
+    internal abstract fun provideSearchUserFragment(): SearchUserFragment
 
 
 }
