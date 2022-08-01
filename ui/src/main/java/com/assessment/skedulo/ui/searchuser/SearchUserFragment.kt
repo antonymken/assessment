@@ -17,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
@@ -29,7 +30,7 @@ import com.assessment.skedulo.structuerandroid.fragment.ViewModelFragment
 import com.assessment.skedulo.ui.main.Navigation
 import com.assessment.skedulo.ui.main.SharedViewModel
 
-
+const val SEARCH_USER_SCREEN = "SEARCH_USER_SCREEN"
 class SearchUserFragment :
     ViewModelFragment<SearchUserView, SearchUserViewModel, SearchUserPresenter>() {
 
@@ -180,6 +181,7 @@ class SearchUserFragment :
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .background(color = Color.LightGray)
+                .testTag(SEARCH_USER_SCREEN),
         ) {
             Surface(
                 modifier = Modifier

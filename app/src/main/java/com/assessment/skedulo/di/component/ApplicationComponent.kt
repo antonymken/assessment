@@ -9,6 +9,7 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
+import kotlin.coroutines.CoroutineContext
 
 
 @Singleton
@@ -29,6 +30,9 @@ interface ApplicationComponent : AndroidInjector<AssessmentApplication> {
 
         @BindsInstance
         fun application(application: AssessmentApplication): Builder
+
+        @BindsInstance
+        fun coroutineContext(coroutineContext: CoroutineContext): Builder
 
         fun build(): ApplicationComponent
     }

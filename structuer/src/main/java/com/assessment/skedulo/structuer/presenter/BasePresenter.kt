@@ -8,10 +8,7 @@ import kotlin.coroutines.CoroutineContext
 /**
  * **  this class connects presenter with view
  */
-abstract class BasePresenter<V> : Presenter<V>, CoroutineScope {
-
-    private val job = Job()
-    override val coroutineContext: CoroutineContext = job + Dispatchers.IO
+abstract class BasePresenter<V>(override val coroutineContext: CoroutineContext) : Presenter<V>, CoroutineScope {
 
     protected var view: V? = null
         private set

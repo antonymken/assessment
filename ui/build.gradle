@@ -107,21 +107,6 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoKotlin"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinx_coroutines_test"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_test"
     testImplementation "androidx.arch.core:core-testing:$core_testing"
-
-    // Testing Navigation
-    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
-
-    // Espresso dependencies
-    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:$espresso"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso"
-    androidTestImplementation "androidx.test.espresso:espresso-accessibility:$espresso"
-    androidTestImplementation "androidx.test.espresso:espresso-web:$espresso"
-    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$espresso"
-    androidTestImplementation "androidx.test.ext:truth:$truthExt"
-
-    // compos UI Tests
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
 }
