@@ -1,4 +1,4 @@
-package com.assessment.skedulo.app.di.module
+package com.assessment.skedulo.di.module
 
 import android.content.Context
 import com.assessment.skedulo.TestAssessmentApplication
