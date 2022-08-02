@@ -1,15 +1,16 @@
-package com.assessment.skedulo.app.di.component
+package com.assessment.skedulo.di.component
 
 import com.assessment.skedulo.TestAssessmentApplication
 import com.assessment.skedulo.data.di.module.DataModule
-import com.assessment.skedulo.app.di.module.TestActivityBindingModule
-import com.assessment.skedulo.app.di.module.TestApplicationModule
+import com.assessment.skedulo.di.module.TestActivityBindingModule
+import com.assessment.skedulo.di.module.TestApplicationModule
 import com.assessment.skedulo.structure.BaseScreenTest
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
+import kotlin.coroutines.CoroutineContext
 
 
 @Singleton
@@ -32,6 +33,9 @@ interface TestApplicationComponent : AndroidInjector<TestAssessmentApplication> 
 
         @BindsInstance
         fun application(application: TestAssessmentApplication): Builder
+
+        @BindsInstance
+        fun coroutineContext(coroutineContext: CoroutineContext): Builder
 
         fun build(): TestApplicationComponent
     }

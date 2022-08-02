@@ -14,7 +14,7 @@ android {
         versionName rootProject.ext.versionName
 
         multiDexEnabled true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.assessment.skedulo.app.runner.TestAssessmentAndroidJunitRunner"
     }
 
     buildTypes {
@@ -96,6 +96,8 @@ dependencies {
     // compos UI Tests
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
+    debugImplementation "androidx.test:core:$core"
+
 
     // Core library
     androidTestImplementation "androidx.test:core:$core"
@@ -103,19 +105,14 @@ dependencies {
 
 
     // AndroidJUnit4ClassRunner and JUnit Rules
-    androidTestImplementation "androidx.test:runner:1.5.0-alpha04"
-    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.1'
-    androidTestImplementation "androidx.test:rules:$runner"
+    androidTestImplementation "androidx.test:runner:$core"
+    androidTestImplementation "androidx.test:rules:$core"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 
     // Assertions
     androidTestImplementation "androidx.test.ext:truth:$truthExt"
     androidTestImplementation "com.google.truth:truth:$truth"
     androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
 
-    //unit test
-    testImplementation "org.hamcrest:hamcrest-all:$hamcrestVersion"
-    testImplementation "junit:junit:$junit"
-    testImplementation "org.mockito:mockito-core:$mockitoVersion"
-    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoKotlin"
-    testImplementation "androidx.arch.core:core-testing:$core_testing"
+
 }

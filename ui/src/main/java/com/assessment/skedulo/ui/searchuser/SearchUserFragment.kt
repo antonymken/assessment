@@ -31,6 +31,8 @@ import com.assessment.skedulo.ui.main.Navigation
 import com.assessment.skedulo.ui.main.SharedViewModel
 
 const val SEARCH_USER_SCREEN = "SEARCH_USER_SCREEN"
+const val SEARCH_USER_TEXT_FIELD = "SEARCH_USER_TEXT_FIELD"
+const val SEARCH_USER_LIST = "SEARCH_USER_LIST"
 class SearchUserFragment :
     ViewModelFragment<SearchUserView, SearchUserViewModel, SearchUserPresenter>() {
 
@@ -80,6 +82,7 @@ class SearchUserFragment :
                 textStyle = TextStyle(fontSize = 17.sp),
                 leadingIcon = { Icon(Icons.Filled.Search, null, tint = Color.Gray) },
                 modifier = Modifier
+                    .testTag(SEARCH_USER_TEXT_FIELD)
                     .padding(10.dp)
                     .background(Color(0xFFE7F1F1), RoundedCornerShape(16.dp)),
                 placeholder = { Text(text = "search") },
@@ -138,7 +141,7 @@ class SearchUserFragment :
 
     @Composable
     fun UserList(items: List<GithubUserDomainModel>) {
-        LazyColumn {
+        LazyColumn(modifier = Modifier.testTag(SEARCH_USER_LIST)) {
             itemsIndexed(items = items) { _, item ->
                 UserItem(item)
             }
