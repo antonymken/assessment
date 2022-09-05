@@ -1,4 +1,4 @@
-package com.assessment.skedulo.ui.searchuser
+package com.assessment.skedulo.domain.searchuser
 
 import com.assessment.skedulo.domain.github.model.GithubUserQueryModel
 import com.assessment.skedulo.domain.github.usecase.GetGithubUserListUseCase

@@ -6,6 +6,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.assessment.skedulo.R
 import com.assessment.skedulo.databinding.ActivityMainLayoutBinding
+import com.assessment.skedulo.domain.main.MainPresenter
+import com.assessment.skedulo.domain.main.MainView
 import com.assessment.skedulo.structuerandroid.activity.ViewModelActivity
 
 

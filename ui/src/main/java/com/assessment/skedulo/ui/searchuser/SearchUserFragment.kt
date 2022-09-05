@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProviders
 import com.assessment.skedulo.domain.github.model.GithubUserDomainModel
+import com.assessment.skedulo.domain.searchuser.SearchUserPresenter
+import com.assessment.skedulo.domain.searchuser.SearchUserView
 import com.assessment.skedulo.structuerandroid.fragment.ViewModelFragment
 import com.assessment.skedulo.ui.main.Navigation
 import com.assessment.skedulo.ui.main.SharedViewModel
@@ -49,7 +51,9 @@ class SearchUserFragment :
         viewModel.errorMessageLiveData.observe(
             this,
             { errorMessage ->
+                if(errorMessage.isNullOrEmpty()) return@observe
                 Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
+                viewModel.clearError()
             }
         )
     }
@@ -160,9 +164,7 @@ class SearchUserFragment :
 
         CircularProgressIndicator(
             progress = progressAnimationValue,
-            modifier = Modifier
-                .width(50.dp)
-                .height(50.dp)
+            modifier = Modifier.fillMaxWidth().fillMaxHeight()
         )
     }
 
@@ -184,12 +186,10 @@ class SearchUserFragment :
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .background(color = Color.LightGray)
-                .testTag(SEARCH_USER_SCREEN),
+                .testTag(SEARCH_USER_SCREEN)
         ) {
             Surface(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
+                modifier = Modifier.fillMaxWidth().fillMaxHeight()
             ) {
                 Column {
                     Row(
@@ -211,8 +211,9 @@ class SearchUserFragment :
             if (visibleLoading) {
                 Surface(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
+                        .width(50.dp)
+                        .height(50.dp)
+
                 ) {
                     CircularProgressAnimated()
                 }

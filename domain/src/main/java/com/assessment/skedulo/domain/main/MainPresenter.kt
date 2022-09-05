@@ -1,8 +1,6 @@
-package com.assessment.skedulo.ui.main
+package com.assessment.skedulo.domain.main
 
 import com.assessment.skedulo.structuer.presenter.BasePresenter
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 

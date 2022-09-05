@@ -1,5 +1,7 @@
 package com.assessment.skedulo.ui.main
 
+import com.assessment.skedulo.domain.main.MainPresenter
+import com.assessment.skedulo.domain.main.MainView
 import com.assessment.skedulo.structuerandroid.PresenterViewModel
 import javax.inject.Inject
 

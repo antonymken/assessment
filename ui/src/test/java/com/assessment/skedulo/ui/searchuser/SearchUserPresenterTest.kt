@@ -1,6 +1,8 @@
 package com.assessment.skedulo.ui.searchuser
 
 import com.assessment.skedulo.domain.github.usecase.GetGithubUserListUseCase
+import com.assessment.skedulo.domain.searchuser.SearchUserPresenter
+import com.assessment.skedulo.domain.searchuser.SearchUserView
 import com.assessment.skedulo.structuer.domain.Error
 import com.assessment.skedulo.structuer.domain.Success
 import com.assessment.skedulo.ui.BaseUnitTest

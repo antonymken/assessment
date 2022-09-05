@@ -9,7 +9,6 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.sdkVersion
-        buildConfigField "String", 'CHECK_IN_QR_VALIDATION_PUBLIC_KEY', '"MIGbMBAGByqGSM49AgEGBSuBBAAjA4GGAAQBcz4aish2sBMpLm4LiSmEUMS6NtTLStGstLeuwCoFaEgpmwxM5graG8DeBcOL/C82xTCYl5bkCYHmDZrQ+3DWRW8BbemVtfpa72Exokm0Tm4AdBUUguY8bUKVAM9xX567/MGSse7Cf7UlNXphS6h7Qnpux3fR4MrYrH3jC+TrgnuIU5s="'
     }
 
     buildFeatures {

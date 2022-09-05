@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.assessment.skedulo.domain.github.model.GithubUserDomainModel
+import com.assessment.skedulo.domain.searchuser.SearchUserPresenter
+import com.assessment.skedulo.domain.searchuser.SearchUserView
 import com.assessment.skedulo.structuerandroid.PresenterViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class SearchUserViewModel @Inject constructor(presenter: SearchUserPresenter) :
@@ -29,27 +29,21 @@ class SearchUserViewModel @Inject constructor(presenter: SearchUserPresenter) :
 
     override fun showUsers(users: List<GithubUserDomainModel>) {
         viewModelScope.launch {
-            withContext(Dispatchers.Main) {
-                _loadingStateMutableLiveData.value = false
-                _githubUserListMutableLiveData.value = users
-            }
+            _loadingStateMutableLiveData.value = false
+            _githubUserListMutableLiveData.value = users
         }
     }
 
     override fun showErrorState(errorMessage: String) {
         viewModelScope.launch {
-            withContext(Dispatchers.Main) {
-                _loadingStateMutableLiveData.value = false
-                _errorMessageMutableLiveData.value = errorMessage
-            }
+            _loadingStateMutableLiveData.value = false
+            _errorMessageMutableLiveData.value = errorMessage
         }
     }
 
     override fun showLoadingState() {
         viewModelScope.launch {
-            withContext(Dispatchers.Main) {
-                _loadingStateMutableLiveData.value = true
-            }
+            _loadingStateMutableLiveData.value = true
         }
     }
 
@@ -63,6 +57,10 @@ class SearchUserViewModel @Inject constructor(presenter: SearchUserPresenter) :
         if (query.isEmpty()) {
             _githubUserListMutableLiveData.value = emptyList()
         }
+    }
+
+    fun clearError() {
+        _errorMessageMutableLiveData.value = ""
     }
 
 }
