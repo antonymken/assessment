@@ -1,0 +1,6 @@
+include ':app'
+include ':structuer-android'
+include ':structuer'
+include ':ui'
+include ':domain'
+include ':data'

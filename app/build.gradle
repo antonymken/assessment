@@ -1,0 +1,118 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.sdkVersion
+    buildToolsVersion rootProject.ext.buildTools
+
+    defaultConfig {
+        applicationId "com.assessment.skedulo"
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.sdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        multiDexEnabled true
+        testInstrumentationRunner "com.assessment.skedulo.app.runner.TestAssessmentAndroidJunitRunner"
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':structuer')
+    implementation project(path: ':structuer-android')
+    implementation project(path: ':ui')
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat"
+    implementation "androidx.core:core-ktx:$androidx_appcompat_core"
+
+    //lifecycle
+    implementation "android.arch.lifecycle:extensions:$lifecycle"
+    kapt "android.arch.lifecycle:compiler:$lifecycle"
+    implementation "androidx.core:core-ktx:$androidx_appcompat_core"
+    implementation "com.google.android.material:material:$material"
+
+    // Dagger dependencies
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-support:$daggerVersion"
+
+    //========= test dependencies =========================================================
+    androidTestImplementation project(path: ':ui')
+
+    testImplementation "junit:junit:$junit"
+
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
+    // Espresso dependencies
+    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:$espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:$espresso") {
+        exclude group: 'org.checkerframework', module: 'checker'
+    }
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso"
+    androidTestImplementation("androidx.test.espresso:espresso-accessibility:$espresso") {
+        exclude group: 'org.checkerframework', module: 'checker'
+    }
+
+    androidTestImplementation "androidx.test.espresso:espresso-web:$espresso"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$espresso"
+    androidTestImplementation "androidx.test.ext:truth:$truthExt"
+
+    // compos UI Tests
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
+    debugImplementation "androidx.test:core:$core"
+
+
+    // Core library
+    androidTestImplementation "androidx.test:core:$core"
+    androidTestImplementation "androidx.test:core-ktx:$core"
+
+
+    // AndroidJUnit4ClassRunner and JUnit Rules
+    androidTestImplementation "androidx.test:runner:$core"
+    androidTestImplementation "androidx.test:rules:$core"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+
+    // Assertions
+    androidTestImplementation "androidx.test.ext:truth:$truthExt"
+    androidTestImplementation "com.google.truth:truth:$truth"
+    androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
+
+
+}
