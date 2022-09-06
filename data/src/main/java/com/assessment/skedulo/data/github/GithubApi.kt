@@ -12,7 +12,7 @@ interface GithubApi {
 
     companion object {
         const val SEARCH_GITHUB = "/search/{path}"
-        const val TOKEN = "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"
+        const val TOKEN = "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"
     }
 
     @Headers(

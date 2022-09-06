@@ -1,27 +1,30 @@
 package com.assessment.skedulo.ui.searchuser
 
 import android.widget.Toast
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProviders
@@ -101,6 +104,52 @@ class SearchUserFragment :
     }
 
     @Composable
+    fun LoadingAnimation(
+        indicatorSize: Dp = 100.dp,
+        circleColors: List<Color> = listOf(
+            Color(0xFF5851D8),
+            Color(0xFF833AB4),
+            Color(0xFFC13584),
+            Color(0xFFE1306C),
+            Color(0xFFFD1D1D),
+            Color(0xFFF56040),
+            Color(0xFFF77737),
+            Color(0xFFFCAF45),
+            Color(0xFFFFDC80),
+            Color(0xFF5851D8)
+        ),
+        animationDuration: Int = 360
+    ) {
+
+        val infiniteTransition = rememberInfiniteTransition()
+
+        val rotateAnimation by infiniteTransition.animateFloat(
+            initialValue = 0f,
+            targetValue = 360f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = animationDuration,
+                    easing = LinearEasing
+                )
+            )
+        )
+
+        CircularProgressIndicator(
+            modifier = Modifier
+                .size(size = indicatorSize)
+                .rotate(degrees = rotateAnimation)
+                .border(
+                    width = 4.dp,
+                    brush = Brush.sweepGradient(circleColors),
+                    shape = CircleShape
+                ),
+            progress = 1f,
+            strokeWidth = 1.dp,
+            color = MaterialTheme.colors.background // Set background color
+        )
+    }
+
+    @Composable
     fun UserItem(githubUser: GithubUserDomainModel) {
 
         Card(
@@ -152,22 +201,6 @@ class SearchUserFragment :
         }
     }
 
-    @Composable
-    private fun CircularProgressAnimated() {
-        val progressValue = 0.75f
-        val infiniteTransition = rememberInfiniteTransition()
-
-        val progressAnimationValue by infiniteTransition.animateFloat(
-            initialValue = 0.0f,
-            targetValue = progressValue, animationSpec = infiniteRepeatable(animation = tween(900))
-        )
-
-        CircularProgressIndicator(
-            progress = progressAnimationValue,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight()
-        )
-    }
-
     @Preview
     @Composable
     override fun SetLayout() {
@@ -209,13 +242,15 @@ class SearchUserFragment :
 
             }
             if (visibleLoading) {
-                Surface(
+                Column(
                     modifier = Modifier
-                        .width(50.dp)
-                        .height(50.dp)
+                        .fillMaxWidth()
+                        .fillMaxHeight(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
 
                 ) {
-                    CircularProgressAnimated()
+                    LoadingAnimation()
                 }
             }
         }

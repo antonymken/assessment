@@ -13,7 +13,7 @@ import com.assessment.skedulo.structure.BaseScreenTest
 import org.junit.Test
 
 
-private const val WAIT_UNTIL_TIMEOUT = 8_000L
+private const val TIMEOUT = 5000L
 
 class SearchUserScreen : BaseScreenTest() {
 
@@ -23,7 +23,7 @@ class SearchUserScreen : BaseScreenTest() {
         launchFragmentInContainer<SearchUserFragment>(themeResId = R.style.AppTheme)
         composeTestRule.onNodeWithTag(SEARCH_USER_TEXT_FIELD).assertIsDisplayed()
         composeTestRule.onNodeWithTag(SEARCH_USER_TEXT_FIELD).performTextInput("anto")
-        composeTestRule.waitUntil(WAIT_UNTIL_TIMEOUT) {
+        composeTestRule.waitUntil(TIMEOUT) {
             composeTestRule
                 .onAllNodesWithTag(SEARCH_USER_LIST)
                 .fetchSemanticsNodes().size == 1
