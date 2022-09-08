@@ -1,4 +1,4 @@
-# assessment-skedulo
+# assessment
 Project highlighting different aspects of android development as listed below:
 - clean architecture on MVVM
 - thread management

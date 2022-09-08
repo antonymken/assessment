@@ -38,6 +38,7 @@ import com.assessment.skedulo.ui.main.SharedViewModel
 const val SEARCH_USER_SCREEN = "SEARCH_USER_SCREEN"
 const val SEARCH_USER_TEXT_FIELD = "SEARCH_USER_TEXT_FIELD"
 const val SEARCH_USER_LIST = "SEARCH_USER_LIST"
+
 class SearchUserFragment :
     ViewModelFragment<SearchUserView, SearchUserViewModel, SearchUserPresenter>() {
 
@@ -54,7 +55,7 @@ class SearchUserFragment :
         viewModel.errorMessageLiveData.observe(
             this,
             { errorMessage ->
-                if(errorMessage.isNullOrEmpty()) return@observe
+                if (errorMessage.isNullOrEmpty()) return@observe
                 Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
                 viewModel.clearError()
             }
@@ -80,7 +81,7 @@ class SearchUserFragment :
             TextField(
                 value = textState.value,
                 onValueChange = {
-                    if (textState.value.text != it.text) {
+                    if (textState.value.text != it.text) {//onValueChange calling multiple times when keyboard is displaying
                         textState.value = it
                         viewModel.onSearchQueryChanged(textState.value.text)
                     }
@@ -158,35 +159,33 @@ class SearchUserFragment :
                 .fillMaxWidth()
                 .height(90.dp)
         ) {
-            Surface {
-                Row(
-                    modifier = Modifier
-                        .padding(4.dp, 4.dp)
-                        .fillMaxSize()
+            Row(
+                modifier = Modifier
+                    .padding(4.dp, 4.dp)
+                    .fillMaxSize()
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.Center, modifier = Modifier
+                        .padding(4.dp)
+                        .fillMaxHeight()
                 ) {
-                    Column(
-                        verticalArrangement = Arrangement.Center, modifier = Modifier
+                    Text(
+                        text = githubUser.login,
+                        style = MaterialTheme.typography.subtitle1,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = githubUser.type,
+                        style = MaterialTheme.typography.caption,
+                        modifier = Modifier
                             .padding(4.dp)
-                            .fillMaxHeight()
-                    ) {
-                        Text(
-                            text = githubUser.login,
-                            style = MaterialTheme.typography.subtitle1,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = githubUser.type,
-                            style = MaterialTheme.typography.caption,
-                            modifier = Modifier
-                                .padding(4.dp)
-                        )
-                        Text(
-                            text = githubUser.score.toString(),
-                            style = MaterialTheme.typography.caption,
-                            modifier = Modifier
-                                .padding(4.dp)
-                        )
-                    }
+                    )
+                    Text(
+                        text = githubUser.score.toString(),
+                        style = MaterialTheme.typography.caption,
+                        modifier = Modifier
+                            .padding(4.dp)
+                    )
                 }
             }
         }
@@ -222,7 +221,9 @@ class SearchUserFragment :
                 .testTag(SEARCH_USER_SCREEN)
         ) {
             Surface(
-                modifier = Modifier.fillMaxWidth().fillMaxHeight()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
             ) {
                 Column {
                     Row(
@@ -239,7 +240,6 @@ class SearchUserFragment :
                         }
                     }
                 }
-
             }
             if (visibleLoading) {
                 Column(
